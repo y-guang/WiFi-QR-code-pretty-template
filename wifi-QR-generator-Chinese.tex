@@ -1,0 +1,29 @@
+% !TEX program = xelatex
+
+\documentclass{standalone}
+\usepackage{ctex}
+\usepackage{qrcode}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+% 请配置以下信息
+\def\wifiname{我的 WiFi} % WiFi的用途/提示, 例如: 书房WiFi
+\def\wifissid{ssid} % WiFi的名称
+\def\wifipassword{password} % Wifi 密码
+\def\wifitype{WPA} % 二维码能扫就不要动这一项, 否则请搜索WiFi安全类型, 例如: WPA2
+% 配置结束
+
+\newlength{\qrsidelen}
+\setlength{\qrsidelen}{2cm}
+\definecolor{midnightblue}{RGB}{25, 25, 112} % background color
+
+\begin{document}
+\begin{tikzpicture}
+    \pagecolor{midnightblue}
+    \node[draw,rounded corners,inner sep=5mm, fill=white] {
+      \qrcode[height=\qrsidelen]{WIFI:T:WPA;S:\wifissid;P:\wifipassword;}
+    };
+    \node (pseudo) at (current bounding box.north) [inner sep=2, minimum height=5mm] {}; % for top padding
+    \node[text width=3cm, text=white, font=\tiny, align=center, below] at (current bounding box.south) {\wifiname \\ 名称: \wifissid \\ 密码: \wifipassword};
+  \end{tikzpicture}
+\end{document}
