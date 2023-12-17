@@ -1,0 +1,1 @@
+# WiFi-QR-code-pretty-template
